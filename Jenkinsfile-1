@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+    
     stages{
         stage("terraform init"){
             steps{
@@ -31,12 +31,16 @@ pipeline{
                 choice choices: ['apply', 'destroy'], description: 'You can apply and the destroy resources, choose', name: 'action'
                 }
             steps{
+            
+            withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
                 echo "terraform carry out action ---> ${action}"
                 sh "terraform ${action} --auto-approve"
+                
+                }
             }
            
         }
 
     }
-   ?
+  
 }
