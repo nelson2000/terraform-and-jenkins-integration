@@ -9,6 +9,22 @@ pipeline{
             }
            
         }
+        
+         stage("terraform validate"){
+          steps{
+                echo "terraform validate"
+                sh "terraform validate"
+            }
+           
+        }
+        
+          stage("terraform format"){
+          steps{
+                echo "terraform format all config tf files"
+                sh "terraform fmt"
+            }
+           
+        }
 
         stage("terraform action"){
             steps{
