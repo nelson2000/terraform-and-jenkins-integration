@@ -1,5 +1,11 @@
 pipeline{
     agent any
+    
+     environment {
+
+    	AWS_DEFAULT_REGION="us-east-1"
+
+    }
      parameters {
     string(name: 'action', defaultValue: 'apply', description: 'Choose an action?')
   }
