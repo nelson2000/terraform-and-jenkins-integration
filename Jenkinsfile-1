@@ -38,10 +38,8 @@ pipeline{
            
             steps{
             
-                withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsid: 'aws_cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                                 echo "terraform carry out action ---> ${action}"
                                 sh "terraform ${action} --auto-approve"
-                }
             }
            
         }
