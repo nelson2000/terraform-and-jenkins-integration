@@ -1,34 +1,23 @@
 pipeline{
-    agent{
-        label "node"
-    }
+    agent any
+
     stages{
-        stage("A"){
+        stage("terraform init"){
             steps{
-                echo "========executing A========"
+                echo "Initializing terraform"
+                sh "terraform init"
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
+           
+        }
+
+        stage("terraform action"){
+            steps{
+                echo "terraform carry out action ---> ${action}"
+                sh "terraform ${action} --auto-approve"
             }
+           
         }
+
     }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
-        }
-    }
+   
 }
