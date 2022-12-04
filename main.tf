@@ -51,6 +51,7 @@ resource "aws_security_group" "my_security_group" {
 
 # Create AWS ec2 instance
 resource "aws_instance" "myFirstInstance" {
+  vpc_id = var.vpc_id 
   ami           = var.ami_id[var.aws_region]
   key_name = var.key_name
   availability_zone = var.a_zone
