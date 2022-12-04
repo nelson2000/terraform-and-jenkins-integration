@@ -1,5 +1,8 @@
 pipeline{
     agent any
+     parameters {
+                choice choices: ['apply', 'destroy'], description: 'You can apply and the destroy resources, choose', name: 'action'
+                }
     
     stages{
         stage("terraform init"){
@@ -27,9 +30,7 @@ pipeline{
         }
 
         stage("terraform action"){
-            parameters {
-                choice choices: ['apply', 'destroy'], description: 'You can apply and the destroy resources, choose', name: 'action'
-                }
+           
             steps{
             
                 withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsid: 'aws_cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
