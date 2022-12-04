@@ -1,9 +1,8 @@
 pipeline{
     agent any
      parameters {
-                choice choices: ['apply', 'destroy'], description: 'You can apply and the destroy resources, choose', name: 'action'
-                }
-    
+    string(name: 'action', defaultValue: 'apply', choices: ['apply', 'destroy'], description: 'Choose an action?')
+  }
     stages{
         stage("terraform init"){
             steps{
